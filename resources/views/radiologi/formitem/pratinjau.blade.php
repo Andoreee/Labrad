@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LABRAD TRY | RADIOLOGI DATA ITEM PEMERIKSAAN</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="text-center">
+        <h5>KLINIK PRATAMA RAWAT INAP GRIYA SARAS</h5>
+        <h4>BULOS KULON 999/666 BULOSHARJO Telp 69696</h4>
+    </div>
+    <div class="mt-5 text-center">
+        <h3>RADIOLOGI - FILM</h3>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th rowspan="2" style="vertical-align:middle;">No</th>
+                    <th rowspan="2" style="vertical-align:middle;">Grup</th>
+                    <th rowspan="2" style="vertical-align:middle;">Nama Item</th>
+                    <th colspan="2">Biaya</th>
+                    <th rowspan="2" style="vertical-align:middle;">E-Klaim BPJS</th>
+
+                </tr>
+                <tr>
+
+                    <th>Rawat Jalan</th>
+                    <th>Pasien Luar</th>
+
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @php $i=1 @endphp
+                @foreach($data as $k)
+                <tr>
+                    <td>{{ $i++ }}</td>
+                    <td>{{App\Models\grup::getGrup($k->idgrup)}}</td>
+                    <td>{{ $k->namaitem }}</td>
+                    <td>@currency( $k->biaya_rawatjalan )</td>
+                    <td>@currency( $k->biaya_pasienluar )</td>
+                    <td>{{App\Models\klaim::getKlaim($k->idklaim)}}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
